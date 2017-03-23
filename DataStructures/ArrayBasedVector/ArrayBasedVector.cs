@@ -57,7 +57,7 @@ namespace DataStructures.ArrayBasedVector
         public int Size() => ElmntsCount;
 
         // time-complexity: O(1)
-        public T ElementAtRank(int rank)
+        public virtual T ElementAtRank(int rank)
         {
             if (rank < 0 || rank >= ElmntsCount)
             {
