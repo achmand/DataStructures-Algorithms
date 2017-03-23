@@ -1,2 +1,2 @@
-# DataStructures-Algorithms
+# DataStructures & Algorithms
 Implemented in C#
