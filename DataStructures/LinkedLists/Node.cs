@@ -3,6 +3,7 @@
     public class Node<T> 
     {
         public Node<T> Next { get; set; }
+        public Node<T> Prev { get; set; }
         public T Element { get; set; }
 
         public Node()
@@ -15,17 +16,8 @@
             Next = next;
             Element = element;
         }
-    }
 
-    public sealed class DoublyNode<T> : Node<T>
-    {
-        public Node<T> Prev { get; set; }
-
-        public DoublyNode()
-        {
-        }
-
-        public DoublyNode(Node<T> next, Node<T> prev, T element)
+        public Node(Node<T> next, Node<T> prev, T element)
         {
             Next = next;
             Prev = prev;

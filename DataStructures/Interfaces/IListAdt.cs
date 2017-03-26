@@ -2,18 +2,13 @@
 
 namespace DataStructures.Interfaces
 {
-    public interface IListAdt<T>
+    public interface IListAdt<T> : IVectorAdt<T>
     {
-        // generic methods 
-        int Size();
-        bool IsEmpty();
-
         // query methods
         void IsFirst(Node<T> node);
         void IsLast(Node<T> node);
 
         // accessor methods
-        T ElementAtRank(int rank);
         Node<T> NodeAtRank(int rank);
         Node<T> First();
         Node<T> Last();
@@ -21,12 +16,13 @@ namespace DataStructures.Interfaces
         Node<T> NextNode(Node<T> currNode);
 
         // update methods 
-        T RemoveAtRank(int rank);
-        T RemoveAfter(Node<T> currNode, T element);
-        T RemoveBefore(Node<T> currNode, T element);
-        T ReplaceAtRank(int rank, T element);
+        T RemoveAfter(Node<T> currNode);
+        T RemoveBefore(Node<T> currNode);
 
+        void SwapElements(Node<T> currNode, Node<T> swapNode);
         void InsertFirst(T element);
+        void InsertLast(T element);
         void InsertAfter(Node<T> currNode, T element);
+        void InsertBefore(Node<T> currNode, T element);
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="Interfaces\IVectorAdt.cs" />
     <Compile Include="LinkedLists\DoublyLinkedList.cs" />
     <Compile Include="LinkedLists\Node.cs" />
+    <Compile Include="LinkedLists\SinglyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
