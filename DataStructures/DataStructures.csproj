@@ -43,7 +43,10 @@
     <Compile Include="ArrayBasedVector\ArrayBasedVector.cs" />
     <Compile Include="ArrayBasedVector\MiddleArrayBasedVector.cs" />
     <Compile Include="ArrayBasedVector\SfArrayBasedVector.cs" />
+    <Compile Include="Interfaces\IListAdt.cs" />
     <Compile Include="Interfaces\IVectorAdt.cs" />
+    <Compile Include="LinkedLists\DoublyLinkedList.cs" />
+    <Compile Include="LinkedLists\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
