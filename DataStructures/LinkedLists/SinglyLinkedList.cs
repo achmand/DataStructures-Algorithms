@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using DataStructures.Interfaces;
 
 namespace DataStructures.LinkedLists
@@ -93,20 +92,19 @@ namespace DataStructures.LinkedLists
             throw new NotImplementedException();
         }
 
-        public Node<T> NodeAtRank(int rank)
-        {
-            if (rank < 0 || rank >= _size)
-            {
-                throw new ArgumentException("Out of range");
-            }
-
-
-        }
+        //public Node<T> NodeAtRank(int rank)
+        //{
+        //    if (rank < 0 || rank >= _size)
+        //    {
+        //        throw new ArgumentException("Out of range");
+        //    }
+            
+        //}
 
         // time complexity: O(1)
         public Node<T> First()
         {
-            if (_head.Next == null)
+            if (IsEmpty())
             {
                 throw new Exception("List is empty");
             }

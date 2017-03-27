@@ -35,8 +35,9 @@ namespace DataStructures.ArrayBasedVector
         // time-complexity: O(1)
         public override T ElementAtRank(int rank)
         {
-            var index = rank >= _offset ? rank - _offset : rank + _offset;
-            return ElementArray[index];
+            var left = rank + ElementArray.Length - _offset;
+            var mpRank = left % ElementArray.Length;
+            return ElementArray[mpRank];
         }
 
         // time complexity: O(1) without array growth
@@ -63,7 +64,7 @@ namespace DataStructures.ArrayBasedVector
         {
             if (rank >= ElmntsCount || rank < 0) // for last use append or insert last (ONLY INSERT AT EXISTING RANKS)
             {
-                throw new ArgumentException("Out of Range");
+                throw new ArgumentException("Out of range");
             }
 
             if (rank == 0)

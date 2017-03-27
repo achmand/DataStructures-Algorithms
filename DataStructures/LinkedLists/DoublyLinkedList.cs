@@ -74,7 +74,11 @@ namespace DataStructures.LinkedLists
 
         public void IsFirst(Node<T> node)
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+            {
+                throw new Exception("List is empty");
+            }
+
         }
 
         public void IsLast(Node<T> node)
@@ -89,12 +93,24 @@ namespace DataStructures.LinkedLists
 
         public Node<T> First()
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+            {
+                throw new Exception("List is empty");
+            }
+
+            return _head.Next;
         }
 
         public Node<T> Last()
         {
-            throw new System.NotImplementedException();
+            if (IsEmpty())
+            {
+                throw new Exception();
+            }
+
+            return _tail.Prev;
+
+
         }
 
         public Node<T> PrevNode(Node<T> currNode)
