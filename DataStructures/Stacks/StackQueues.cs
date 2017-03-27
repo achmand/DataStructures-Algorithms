@@ -9,10 +9,10 @@ namespace DataStructures.Stacks
     {
         #region fields and properties
 
-        private readonly Queue<T> _queueA;
-        private readonly Queue<T> _queueB;
         private bool _isA;
         private int _size;
+        private readonly Queue<T> _queueA;
+        private readonly Queue<T> _queueB;
 
         #endregion
 
@@ -29,6 +29,7 @@ namespace DataStructures.Stacks
         #endregion
 
         #region public methods
+
         // time complexity: O(1)
         public bool IsEmpty()
         {
@@ -54,8 +55,8 @@ namespace DataStructures.Stacks
                 tmpA.Enqueue(tmp);
             }
 
-            _size++;
             _isA = !_isA;
+            _size++;
         }
 
         // time complexity: O(1)
@@ -74,6 +75,11 @@ namespace DataStructures.Stacks
         // time complexity: O(1)
         public T Peek()
         {
+            if (IsEmpty())
+            {
+                throw new ArgumentException("Stack is empty");
+            }
+
             var value = _isA ? _queueA.Peek() : _queueB.Peek();
             return value;
         }
