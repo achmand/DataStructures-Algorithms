@@ -4,7 +4,7 @@ using DataStructures.Interfaces;
 
 namespace DataStructures.Stacks
 {
-    // Implementing a stack using two queues 
+    // implementing a stack using two queues 
     public sealed class StackQueues<T> : IStackAdt<T>
     {
         #region fields and properties
@@ -80,7 +80,7 @@ namespace DataStructures.Stacks
                 throw new ArgumentException("Stack is empty");
             }
 
-            var value = _isA ? _queueA.Peek() : _queueB.Peek();
+            var value = !_isA ? _queueA.Peek() : _queueB.Peek();
             return value;
         }
 
