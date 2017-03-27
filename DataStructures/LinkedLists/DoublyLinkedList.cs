@@ -108,13 +108,16 @@ namespace DataStructures.LinkedLists
             }
 
             return _tail.Prev;
-
-
         }
 
         public Node<T> PrevNode(Node<T> currNode)
         {
-            throw new System.NotImplementedException();
+            if (currNode?.Prev == null) // checks for currNode and next node 
+            {
+                throw new Exception("Node is null");
+            }
+
+            return currNode.Prev;
         }
 
         // time complexity: O(1)
@@ -130,7 +133,20 @@ namespace DataStructures.LinkedLists
 
         public T RemoveAfter(Node<T> currNode)
         {
-            throw new System.NotImplementedException();
+            if (currNode?.Next == null) // checks for currNode and next node 
+            {
+                throw new Exception("Node is null");
+            }
+
+            var nodeRemove = currNode.Next;
+            currNode.Next = nodeRemove.Next;
+            if (currNode.Next != null)
+            {
+                currNode.Next.Prev = currNode;
+            }
+
+            _size--;
+            return nodeRemove.Element;
         }
 
         public T RemoveBefore(Node<T> currNode)
