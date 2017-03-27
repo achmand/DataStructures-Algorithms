@@ -11,6 +11,9 @@ namespace DataStructures.LinkedLists
         // we will have nodes (sentinal nodes)
         private Node<T> _head;
         private Node<T> _tail;
+        private int _size;
+        
+        #endregion
 
         #region notes
 
@@ -24,10 +27,6 @@ namespace DataStructures.LinkedLists
            being removed (and without a header node, the first node
            does not have a node prior to it)"
          */
-
-        #endregion
-
-        private int _size;
 
         #endregion
 

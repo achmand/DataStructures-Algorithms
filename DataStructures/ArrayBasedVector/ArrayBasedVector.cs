@@ -4,7 +4,7 @@ using DataStructures.Interfaces;
 namespace DataStructures.ArrayBasedVector
 {
     /// <summary>
-    /// Standard array based vector.
+    /// standard array based vector.
     /// </summary>
     /// <typeparam name="T">Vector Type</typeparam>
     public class ArrayBasedVector<T> : IVectorAdt<T>

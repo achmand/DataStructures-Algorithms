@@ -53,7 +53,7 @@ namespace DataStructures.LinkedLists
         {
             if (rank < 0 || rank >= _size)
             {
-                throw new ArgumentException("Out of range");
+                throw new IndexOutOfRangeException("Out of range");
             }
 
             var head = _head.Next;
@@ -92,14 +92,13 @@ namespace DataStructures.LinkedLists
             throw new NotImplementedException();
         }
 
-        //public Node<T> NodeAtRank(int rank)
-        //{
-        //    if (rank < 0 || rank >= _size)
-        //    {
-        //        throw new ArgumentException("Out of range");
-        //    }
-            
-        //}
+        public Node<T> NodeAtRank(int rank)
+        {
+            if (rank < 0 || rank >= _size)
+            {
+                throw new ArgumentException("Out of range");
+            }
+        }
 
         // time complexity: O(1)
         public Node<T> First()
