@@ -1,4 +1,6 @@
-﻿namespace DataStructures.LinkedLists
+﻿using System.Collections.Generic;
+
+namespace DataStructures.LinkedLists
 {
     /*
      * A bag (or multiset) is similiar to a set and stores an unordered group of elements.
@@ -32,6 +34,20 @@
         //    return 0;
         //}
 
+        //public List<T> AlphaCut(int alpha)
+        //{
+        //    var list = new List<T>();
+        //    var currNode = Head.Next;
+        //    while (currNode != null)
+        //    {
+        //        if (currNode.Count == alpha)
+        //        {
+        //            list.Add(currNode.Element);
+        //        }
+        //        currNode = currNode.Next;
+        //    }
 
+        //    return list;
+        //}
     }
 }
