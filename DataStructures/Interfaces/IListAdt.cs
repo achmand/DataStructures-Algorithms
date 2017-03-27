@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DataStructures.LinkedLists;
+﻿using DataStructures.LinkedLists;
 
 namespace DataStructures.Interfaces
 {

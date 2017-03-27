@@ -1,5 +1,6 @@
 ﻿namespace DataStructures.LinkedLists
 {
+    // For singly linked list we dont use the prev
     public class Node<T> 
     {
         public Node<T> Next { get; set; }

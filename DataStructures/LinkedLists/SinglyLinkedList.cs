@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataStructures.Interfaces;
 
 namespace DataStructures.LinkedLists
@@ -9,7 +10,7 @@ namespace DataStructures.LinkedLists
 
         // begining and an end marker 
         // we will have nodes (sentinal nodes)
-        private Node<T> _head; // header node
+        protected Node<T> Head; // header node
 
         #region notes
 
@@ -56,7 +57,7 @@ namespace DataStructures.LinkedLists
                 throw new IndexOutOfRangeException("Out of range");
             }
 
-            var head = _head.Next;
+            var head = Head.Next;
             var c = rank;
             while (c > 0)
             {
@@ -92,6 +93,7 @@ namespace DataStructures.LinkedLists
             throw new NotImplementedException();
         }
 
+        // TODO: Not ready
         public Node<T> NodeAtRank(int rank)
         {
             if (rank < 0 || rank >= _size)
@@ -108,7 +110,7 @@ namespace DataStructures.LinkedLists
                 throw new Exception("List is empty");
             }
 
-            return _head.Next;
+            return Head.Next;
         }
 
         public Node<T> Last()
@@ -123,7 +125,7 @@ namespace DataStructures.LinkedLists
 
         public Node<T> NextNode(Node<T> currNode)
         {
-            if (currNode?.Next == null) // checks for currNode and next node  
+            if (currNode?.Next == null) 
             {
                 throw new Exception("Node is null");
             }

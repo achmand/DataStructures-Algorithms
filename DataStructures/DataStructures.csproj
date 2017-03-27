@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\IListAdt.cs" />
     <Compile Include="Interfaces\IStackAdt.cs" />
     <Compile Include="Interfaces\IVectorAdt.cs" />
+    <Compile Include="LinkedLists\BagSinglyLinkedList.cs" />
     <Compile Include="LinkedLists\DoublyLinkedList.cs" />
     <Compile Include="LinkedLists\Node.cs" />
     <Compile Include="LinkedLists\SinglyLinkedList.cs" />
