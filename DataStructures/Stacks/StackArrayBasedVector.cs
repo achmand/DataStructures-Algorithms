@@ -35,7 +35,7 @@ namespace DataStructures.Stacks
 
         public T Peek()
         {
-            return _vectorAdt.RemoveAtRank(_vectorAdt.Size() - 1);
+            return _vectorAdt.ElementAtRank(_vectorAdt.Size() - 1);
         }
 
         #endregion

@@ -89,9 +89,9 @@ namespace DataStructures.ArrayBasedVector
             }
 
             var tmpObj = ElementArray[rank];
-            for (var i = rank + 1; i > ElmntsCount; i++)
+            for (var i = rank; i < ElmntsCount - 1; i++)
             {
-                ElementArray[i - 1] = ElementArray[i];
+                ElementArray[i] = ElementArray[i + i];
             }
 
             ElementArray[ElmntsCount] = default(T);
@@ -99,7 +99,7 @@ namespace DataStructures.ArrayBasedVector
             return tmpObj;
         }
 
-        // time-complexity: O(n) | worst case rank is 0 
+        // time-complexity: O(n) 
         public virtual void InsertAtRank(int rank, T obj)
         {
             if (rank > ElmntsCount || rank < 0)

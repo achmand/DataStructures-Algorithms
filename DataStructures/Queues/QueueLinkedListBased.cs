@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DataStructures.Interfaces;
 
-namespace DataStructures.Stacks
+namespace DataStructures.Queues
 {
-    public class StackLinkedListBased<T> : IStackAdt<T>
+    public class QueueLinkedListBased<T> : IQueueAdt<T>
     {
         private readonly LinkedList<T> _linkedList = new LinkedList<T>();
 
@@ -19,21 +19,20 @@ namespace DataStructures.Stacks
             return _linkedList.Count;
         }
 
-        public void Push(T element)
+        public void Enqueue(T element)
         {
-            
             _linkedList.AddFirst(element);
         }
 
-        public T Pop()
+        public T Dequeue()
         {
             if (!_linkedList.Any())
             {
                 throw new Exception("Emtpy");
             }
 
-            var returnValue = _linkedList.First.Value;
-            _linkedList.RemoveFirst();
+            var returnValue = _linkedList.Last.Value;
+            _linkedList.RemoveLast();
             return returnValue;
         }
 
