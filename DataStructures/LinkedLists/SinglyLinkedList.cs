@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DataStructures.Interfaces;
 
 namespace DataStructures.LinkedLists
@@ -8,9 +7,9 @@ namespace DataStructures.LinkedLists
     {
         #region fields and properties
 
-        // begining and an end marker 
+        // begining 
         // we will have nodes (sentinal nodes)
-        protected Node<T> Head; // header node
+        protected Node<T> Head; // header node 
 
         #region notes
 
@@ -35,22 +34,25 @@ namespace DataStructures.LinkedLists
 
         public SinglyLinkedList()
         {
-
+            Head = new Node<T>();
         }
 
         #endregion
 
+        // time complexity: O(1)
         public bool IsEmpty()
         {
             return _size == 0;
         }
 
+        // time complexity: O(1)
         public int Size()
         {
             return _size;
         }
 
-        public T ElementAtRank(int rank)
+        // time complexity: O(n)
+        public Node<T> NodeAtRank(int rank)
         {
             if (rank < 0 || rank >= _size)
             {
@@ -65,17 +67,37 @@ namespace DataStructures.LinkedLists
                 c--;
             }
 
-            return head.Element;
+            return head;
         }
 
-        public T ReplaceAtRank(int rank, T obj)
+        // time complexity: O(n)
+        public T ElementAtRank(int rank)
         {
-            throw new NotImplementedException();
+            return NodeAtRank(rank).Element;
+        }
+
+        // time complexity: O(n)
+        public T ReplaceAtRank(int rank, T element)
+        {
+            if (rank < 0 || rank >= _size)
+            {
+                throw new IndexOutOfRangeException("Out of range");
+            }
+
+            var replaceNode = NodeAtRank(rank);
+            var returnValue = replaceNode.Element;
+            replaceNode.Element = element;
+
+            return returnValue;
         }
 
         public T RemoveAtRank(int rank)
         {
-            throw new NotImplementedException();
+            if (rank < 0 || rank >= _size)
+            {
+                throw new IndexOutOfRangeException("Out of range");
+            }
+
         }
 
         public void InsertAtRank(int rank, T obj)
@@ -83,23 +105,20 @@ namespace DataStructures.LinkedLists
             throw new NotImplementedException();
         }
 
-        public void IsFirst(Node<T> node)
+        // time complexity: O(1)
+        public bool IsFirst(Node<T> node)
         {
-            throw new NotImplementedException();
-        }
-
-        public void IsLast(Node<T> node)
-        {
-            throw new NotImplementedException();
-        }
-
-        // TODO: Not ready
-        public Node<T> NodeAtRank(int rank)
-        {
-            if (rank < 0 || rank >= _size)
+            if (IsEmpty())
             {
-                throw new ArgumentException("Out of range");
+                throw new Exception("List is empty");
             }
+
+            return First() == node;
+        }
+
+        public bool IsLast(Node<T> node)
+        {
+            throw new NotImplementedException();
         }
 
         // time complexity: O(1)
@@ -118,14 +137,32 @@ namespace DataStructures.LinkedLists
             throw new NotImplementedException();
         }
 
+        // time complexity: O(n)
         public Node<T> PrevNode(Node<T> currNode)
         {
-            throw new NotImplementedException();
+            if (currNode == null)
+            {
+                throw new Exception("Node is null");
+            }
+
+            var currentNode = Head.Next;
+            while (currentNode != null)
+            {
+                if (currentNode.Next == currNode)
+                {
+                    return currentNode;
+                }
+
+                currentNode = currentNode.Next;
+            }
+
+            return null; // returns null if node does not exist
         }
 
+        // time complexity O(1)
         public Node<T> NextNode(Node<T> currNode)
         {
-            if (currNode?.Next == null) 
+            if (currNode?.Next == null)
             {
                 throw new Exception("Node is null");
             }
@@ -150,9 +187,45 @@ namespace DataStructures.LinkedLists
             return value;
         }
 
+        // time complexity: O(n)
+        public T Remove(Node<T> currNode)
+        {
+            if (currNode == null)
+            {
+                throw new Exception("Cannot be null");
+            }
+
+            var element = currNode.Element;
+            if (currNode == Head.Next)
+            {
+                Head.Next = currNode.Next;
+            }
+            else
+            {
+                var prevNode = PrevNode(currNode); // O(n)
+                element = RemoveAfter(prevNode);
+            }
+            
+            _size--;
+            return element;
+        }
+
         public T RemoveBefore(Node<T> currNode)
         {
             throw new NotImplementedException();
+        }
+
+        // time complexity: O(n)
+        public void SwapNodes(Node<T> currNode, Node<T> swapNode)
+        {
+            if (currNode == null || swapNode == null)
+            {
+                throw new Exception("Cannot be null");
+            }
+
+            var curNext = currNode.Next;
+            currNode.Next = swapNode.Next;
+            swapNode.Next = curNext;
         }
 
         // time complexity: O(1)
@@ -163,9 +236,9 @@ namespace DataStructures.LinkedLists
                 throw new Exception("Cannot be null");
             }
 
-            var curNext = currNode.Next;
-            currNode.Next = swapNode.Next;
-            swapNode.Next = curNext;
+            var elementCur = currNode.Element;
+            currNode.Element = swapNode.Element;
+            swapNode.Element = elementCur;
         }
 
         public void InsertFirst(T element)
@@ -186,7 +259,7 @@ namespace DataStructures.LinkedLists
                 throw new Exception("Cannot be null");
             }
 
-            var newNode = new Node<T> { Next = currNode.Next };
+            var newNode = new Node<T> { Next = currNode.Next, Element = element };
             currNode.Next = newNode;
             _size++;
         }

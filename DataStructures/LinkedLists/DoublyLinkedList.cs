@@ -154,7 +154,7 @@ namespace DataStructures.LinkedLists
             throw new System.NotImplementedException();
         }
 
-        public void SwapElements(Node<T> currNode, Node<T> swapNode)
+        public void SwapNodes(Node<T> currNode, Node<T> swapNode)
         {
             throw new System.NotImplementedException();
         }
