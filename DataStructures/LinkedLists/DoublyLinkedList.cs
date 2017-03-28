@@ -1,5 +1,4 @@
-﻿using System;
-using DataStructures.Interfaces;
+﻿using DataStructures.Interfaces;
 
 namespace DataStructures.LinkedLists
 {
@@ -71,16 +70,12 @@ namespace DataStructures.LinkedLists
             throw new System.NotImplementedException();
         }
 
-        public void IsFirst(Node<T> node)
+        public bool IsFirst(Node<T> node)
         {
-            if (IsEmpty())
-            {
-                throw new Exception("List is empty");
-            }
-
+            throw new System.NotImplementedException();
         }
 
-        public void IsLast(Node<T> node)
+        public bool IsLast(Node<T> node)
         {
             throw new System.NotImplementedException();
         }
@@ -92,61 +87,32 @@ namespace DataStructures.LinkedLists
 
         public Node<T> First()
         {
-            if (IsEmpty())
-            {
-                throw new Exception("List is empty");
-            }
-
-            return _head.Next;
+            throw new System.NotImplementedException();
         }
 
         public Node<T> Last()
         {
-            if (IsEmpty())
-            {
-                throw new Exception();
-            }
-
-            return _tail.Prev;
+            throw new System.NotImplementedException();
         }
 
         public Node<T> PrevNode(Node<T> currNode)
         {
-            if (currNode?.Prev == null) // checks for currNode and next node 
-            {
-                throw new Exception("Node is null");
-            }
-
-            return currNode.Prev;
+            throw new System.NotImplementedException();
         }
 
-        // time complexity: O(1)
         public Node<T> NextNode(Node<T> currNode)
         {
-            if (currNode?.Next == null) // checks for currNode and next node 
-            {
-                throw new Exception("Node is null");
-            }
-
-            return currNode.Next;
+            throw new System.NotImplementedException();
         }
 
         public T RemoveAfter(Node<T> currNode)
         {
-            if (currNode?.Next == null) // checks for currNode and next node 
-            {
-                throw new Exception("Node is null");
-            }
+            throw new System.NotImplementedException();
+        }
 
-            var nodeRemove = currNode.Next;
-            currNode.Next = nodeRemove.Next;
-            if (currNode.Next != null)
-            {
-                currNode.Next.Prev = currNode;
-            }
-
-            _size--;
-            return nodeRemove.Element;
+        public T Remove(Node<T> currNode)
+        {
+            throw new System.NotImplementedException();
         }
 
         public T RemoveBefore(Node<T> currNode)
@@ -154,7 +120,7 @@ namespace DataStructures.LinkedLists
             throw new System.NotImplementedException();
         }
 
-        public void SwapNodes(Node<T> currNode, Node<T> swapNode)
+        public void SwapElements(Node<T> currNode, Node<T> swapNode)
         {
             throw new System.NotImplementedException();
         }

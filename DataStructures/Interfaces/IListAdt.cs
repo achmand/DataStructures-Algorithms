@@ -20,7 +20,7 @@ namespace DataStructures.Interfaces
         T Remove(Node<T> currNode);
         T RemoveBefore(Node<T> currNode);
 
-        void SwapNodes(Node<T> currNode, Node<T> swapNode);
+        //void SwapNodes(Node<T> currNode, Node<T> swapNode);
         void SwapElements(Node<T> currNode, Node<T> swapNode);
         void InsertFirst(T element);
         void InsertLast(T element);

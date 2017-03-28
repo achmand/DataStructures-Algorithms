@@ -287,18 +287,18 @@ namespace DataStructures.LinkedLists
             return returnValue;
         }
 
-        // time complexity: O(n)
-        public void SwapNodes(Node<T> currNode, Node<T> swapNode)
-        {
-            if (currNode == null || swapNode == null)
-            {
-                throw new Exception("Cannot be null");
-            }
+        //// time complexity: O(n)
+        //public void SwapNodes(Node<T> currNode, Node<T> swapNode)
+        //{
+        //    if (currNode == null || swapNode == null)
+        //    {
+        //        throw new Exception("Cannot be null");
+        //    }
 
-            var curNext = currNode.Next;
-            currNode.Next = swapNode.Next;
-            swapNode.Next = curNext;
-        }
+        //    var curNext = currNode.Next;
+        //    currNode.Next = swapNode.Next;
+        //    swapNode.Next = curNext;
+        //}
 
         // time complexity: O(1)
         public void SwapElements(Node<T> currNode, Node<T> swapNode)
@@ -323,12 +323,27 @@ namespace DataStructures.LinkedLists
             _size++;
         }
 
+        // time complexity: O(n)
         public void InsertLast(T element)
         {
-            throw new NotImplementedException();
+            var head = Head.Next;
+            if (Head.Next == null)
+            {
+                InsertFirst(element);
+                return;
+            }
+
+            while (head.Next != null)
+            {
+                head = head.Next;
+            }
+
+            var newNode = new Node<T> { Element = element };
+            head.Next = newNode;
+            _size++;
         }
 
-        // time complexity : O(1)
+        // time complexity: O(1)
         public void InsertAfter(Node<T> currNode, T element)
         {
             if (currNode == null)
@@ -341,12 +356,28 @@ namespace DataStructures.LinkedLists
             _size++;
         }
 
+        //time complexity: O(n)
         public void InsertBefore(Node<T> currNode, T element)
         {
             if (currNode == null)
             {
                 throw new Exception("Cannot be null");
             }
+
+            if (currNode == Head.Next)
+            {
+                InsertFirst(element); // best case: O(1)
+            }
+
+            var newNode = new Node<T>
+            {
+                Element = element,
+                Next = currNode
+            };
+
+            var previousNode = PrevNode(currNode);
+            previousNode.Next = newNode;
+            _size++;
         }
     }
 }
