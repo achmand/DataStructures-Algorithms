@@ -91,6 +91,9 @@ namespace DataStructures.LinkedLists
             return returnValue;
         }
 
+        // time complexity: O(n)
+        // best case: O(1)
+        // worst case: O(n)
         public T RemoveAtRank(int rank)
         {
             if (rank < 0 || rank >= _size)
@@ -98,11 +101,48 @@ namespace DataStructures.LinkedLists
                 throw new IndexOutOfRangeException("Out of range");
             }
 
+            var head = Head.Next;
+            var c = rank;
+            while (c > 0)
+            {
+                head = head.Next;
+                c--;
+            }
+
+            var returnValue = head.Element;
+            if (head == Head.Next)
+            {
+                Head.Next = head.Next; // best case O(1)
+                _size--;
+            }
+            else
+            {
+                Remove(head); // O(n)
+            }
+
+            return returnValue;
         }
 
+        // time complexity: O(n)
         public void InsertAtRank(int rank, T obj)
         {
-            throw new NotImplementedException();
+            if (rank < 0 || rank >= _size)
+            {
+                throw new IndexOutOfRangeException("Out of range");
+            }
+
+            if (rank == 0)
+            {
+                InsertFirst(obj); // best case O(1)
+                return;
+            }
+
+            var newNode = new Node<T> { Element = obj };
+            var prevNode = NodeAtRank(rank - 1); // worst case O(n)
+            newNode.Next = prevNode.Next;
+            prevNode.Next = newNode;
+
+            _size++;
         }
 
         // time complexity: O(1)
@@ -116,9 +156,15 @@ namespace DataStructures.LinkedLists
             return First() == node;
         }
 
+        // time complexity: O(n)
         public bool IsLast(Node<T> node)
         {
-            throw new NotImplementedException();
+            if (IsEmpty())
+            {
+                throw new Exception("List is empty");
+            }
+
+            return Last() == node;
         }
 
         // time complexity: O(1)
@@ -132,9 +178,21 @@ namespace DataStructures.LinkedLists
             return Head.Next;
         }
 
+        // time complexity: O(n)
         public Node<T> Last()
         {
-            throw new NotImplementedException();
+            if (IsEmpty())
+            {
+                throw new Exception("List is empty");
+            }
+
+            var head = Head.Next;
+            while (head.Next != null) // until the next is null,then we found the last node
+            {
+                head = head.Next;
+            }
+
+            return head;
         }
 
         // time complexity: O(n)
@@ -198,21 +256,35 @@ namespace DataStructures.LinkedLists
             var element = currNode.Element;
             if (currNode == Head.Next)
             {
-                Head.Next = currNode.Next;
+                Head.Next = currNode.Next; // best case: O(n)
+                _size--;
             }
             else
             {
                 var prevNode = PrevNode(currNode); // O(n)
                 element = RemoveAfter(prevNode);
             }
-            
-            _size--;
+
             return element;
         }
 
+        // O(n)
         public T RemoveBefore(Node<T> currNode)
         {
-            throw new NotImplementedException();
+            if (currNode == null)
+            {
+                throw new Exception("Cannot be null");
+            }
+
+            var prevNode = PrevNode(currNode);
+            if (prevNode == null)
+            {
+                throw new Exception("Node does not exist");
+            }
+
+            var returnValue = prevNode.Element;
+            Remove(prevNode);
+            return returnValue;
         }
 
         // time complexity: O(n)
@@ -241,9 +313,14 @@ namespace DataStructures.LinkedLists
             swapNode.Element = elementCur;
         }
 
+        // time complexity: O(1)
         public void InsertFirst(T element)
         {
-            throw new NotImplementedException();
+            var node = new Node<T> { Element = element };
+            var head = Head.Next;
+            node.Next = head;
+            Head.Next = node;
+            _size++;
         }
 
         public void InsertLast(T element)
