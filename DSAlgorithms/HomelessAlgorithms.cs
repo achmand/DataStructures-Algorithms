@@ -15,6 +15,9 @@ namespace DSAlgorithms
             return computed;
         }
 
+        // this for loop could be removed by setting the 
+        // positive index when computing the array. -> ComputeDifferenceArray
+        // i would suggest to have a datastructure for this. 
         public static int? FindIndexOfFirstPositive(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
@@ -49,35 +52,9 @@ namespace DSAlgorithms
                     first = computed[i];
                 }
             }
+
+
             return max;
-        }
-
-        public static int Profits(int[] array)
-        {
-            int stockDifference = 0;
-            int total = 0;
-
-            for (int i = 0; i < array.Length - 1; i++)
-            {
-                stockDifference = array[i + 1] - array[i];
-                if (stockDifference > 0)
-                {
-                    total += stockDifference;
-                }
-                else if(stockDifference < 0)
-                {
-                    if (total - stockDifference < 0)
-                    {
-                        total = 0;
-                    }
-                    else
-                    {
-                        total -= stockDifference;
-                    }
-                }
-            }
-
-            return total;
         }
     }
 }
