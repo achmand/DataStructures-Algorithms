@@ -55,6 +55,10 @@
       <Project>{3ad16e12-6277-4e75-95b3-50dea341fca3}</Project>
       <Name>DataStructures</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DSAlgorithms\DSAlgorithms.csproj">
+      <Project>{7321ef21-d587-416b-bb92-df0013f318c2}</Project>
+      <Name>DSAlgorithms</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

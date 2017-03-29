@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataStructures.ArrayBasedVector;
+using DSAlgorithms;
 
 namespace ConsoleApp
 {
@@ -20,11 +21,17 @@ namespace ConsoleApp
             //    $"{abv.ElementAtRank(0)} {abv.ElementAtRank(1)} {abv.ElementAtRank(2)} {abv.ElementAtRank(3)} {abv.ElementAtRank(4)} {abv.ElementAtRank(5)}";
             //Console.WriteLine(str);
             //Console.ReadKey();
-           
-            LinkedList<int> ln = new LinkedList<int>();
-            ln.AddFirst(2);
-            ln.AddFirst(4);
-            Console.WriteLine(ln.Count);
+            var array = new[] { 19, 5, 17, 20, 14, 13 };
+            var x = HomelessAlgorithms.ComputeDifferenceArray(array);
+            foreach (var a in x)
+            {
+                Console.WriteLine(a);
+            }
+
+            Console.WriteLine("");
+            var t = HomelessAlgorithms.Profits(array);
+
+            Console.WriteLine(t);
             Console.ReadKey();
         }
     }
