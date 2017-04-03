@@ -66,6 +66,7 @@ namespace DSAlgorithms
         #region binomial coefficient
 
         // for more info: http://mathworld.wolfram.com/BinomialCoefficient.html
+        // Equation: n!/(n-r)!r! -> Note: Combinations is when the order doesnt matter
         // n -> set of n numbers
         // r -> set of combinations
         // time complexity: O(n^2)
