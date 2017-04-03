@@ -69,7 +69,7 @@ namespace DSAlgorithms
         // Equation: n!/(n-r)!r! -> Note: Combinations is when the order doesnt matter
         // n -> set of n numbers
         // r -> set of combinations
-        // time complexity: O(n^2)
+        // time complexity: O(n2)
         public static int BinomialCoefficient(int n, int k)
         {
             if (n < k)
