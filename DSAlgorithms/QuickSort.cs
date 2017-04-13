@@ -15,6 +15,7 @@ namespace DSAlgorithms
     // TODO : ADD RANDOM POINTER SORT  
     // TODO : ADD LR POINTER SORT 
 
+    // Section 1 - P3.1
     // Time complexity -> Best: O(n log n), Avg: (n log n), Worst: O(n^2) 
     // Space complexity -> O(log n)
     // For more info visit: https://en.wikipedia.org/wiki/Quicksort
@@ -38,57 +39,55 @@ namespace DSAlgorithms
         }
 
         // A -> Deterministic quick-sort using the left-most element as pivot 
+        // in this method we use recursion
         private static void SortA(IList<int> array, int left, int right)
         {
-            while (true)
+            var pivot = array[left]; // using left most pivot
+            var i = left;
+            var j = right;
+
+            while (i <= j)
             {
-                var pivot = array[left]; // using left most pivot
-                var i = left;
-                var j = right;
-
-                while (i <= j)
+                while (array[i] < pivot)
                 {
-                    while (array[i] < pivot)
-                    {
-                        i++;
-                    }
-
-                    while (array[j] > pivot)
-                    {
-                        j--;
-                    }
-
-                    if (i > j)
-                    {
-                        continue;
-                    }
-
-                    Swap(array, i, j);
                     i++;
+                }
+
+                while (array[j] > pivot)
+                {
                     j--;
                 }
 
-                if (left < j)
+                if (i > j)
                 {
-                    SortA(array, left, j);
-                }
-
-                if (i < right)
-                {
-                    left = i;
                     continue;
                 }
 
-                break;
+                Swap(array, i, j);
+                i++;
+                j--;
             }
+
+            if (left < j)
+            {
+                SortA(array, left, j);
+            }
+
+            if (i < right)
+            {
+                left = i;
+                SortA(array, left, right);
+            }
+
         }
 
         // B -> Heuristic added -> using the median of three technique
+        // in this method we use a while instead of recursion
         private static void SortB(IList<int> array, int left, int right)
         {
             while (true)
             {
-                var pivot = GetMedianPivot(array, left, right); // using median as pivot 
+                var pivot = GetMedianPivot(array, left, right);
                 var i = left;
                 var j = right;
 
@@ -184,7 +183,7 @@ namespace DSAlgorithms
         // An implementation of insertion sort 
         private static void InsertionSort(IList<int> array, int n)
         {
-            for (int i = 1; i < n; i++)
+            for (var i = 1; i < n; i++)
             {
                 var k = array[i];
                 var j = i - 1;
@@ -205,7 +204,7 @@ namespace DSAlgorithms
             var middle = (left + right) / 2;
             var arrayLen = array.Count - 1;
 
-            var tmpArray = new[] { array[0], array[middle], array[arrayLen] };
+            var tmpArray = new[] { array[0], array[middle], array[arrayLen] }; // TODO: would be nice to remove this
             Array.Sort(tmpArray);
 
             var pivot = tmpArray[1];

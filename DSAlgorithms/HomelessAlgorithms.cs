@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace DSAlgorithms
 {
@@ -95,7 +96,41 @@ namespace DSAlgorithms
                 ansB *= i;
             }
 
-            return ansA/ansB;
+            return ansA / ansB;
+        }
+
+        #endregion
+
+        #region collatz conjecture 
+
+        // Collatz Conjecture (aka 3n + 1 conjecture) 
+        // If n is even, divide it by 2 to get n / 2. If n is odd, multiply it by 3 and add 1 to obtain 3n + 1. 
+        // Repeat the process indefinitely and no matter what number you start with you will end up with 1.
+        // Parameter must be a postive integer
+        // for more info: https://en.wikipedia.org/wiki/Collatz_conjecture 
+        // https://xkcd.com/710/ :)
+
+        /// <summary>
+        /// 3n + 1 conjecture.
+        /// </summary>
+        /// <param name="number">Must be a positve integer.</param>
+        /// <param name="array">Output of numbers until it reached 1.</param>
+        public static void CollatzConjecture(int number, out List<int> array)
+        {
+            array = new List<int>();
+            while (number > 1)
+            {
+                if (number % 2 == 0)
+                {
+                    number = number / 2;
+                }
+                else
+                {
+                    number = 3 * number + 1;
+                }
+
+                array.Add(number);
+            }
         }
 
         #endregion
