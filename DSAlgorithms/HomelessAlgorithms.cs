@@ -127,6 +127,9 @@ namespace DSAlgorithms
                 else
                 {
                     number = 3 * number + 1;
+                    // because this always returns even
+                    // the ans could be divided by 2 
+                    // number = (3 * number + 1) / 2;
                 }
 
                 array.Add(number);
