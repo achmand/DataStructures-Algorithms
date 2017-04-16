@@ -10,24 +10,24 @@ namespace DSAlgorithms
         SortC
     }
 
-    // Three types of quick sorts 
-
-    // TODO : ADD RANDOM POINTER SORT  
-    // TODO : ADD LR POINTER SORT 
-
     // Section 1 - P3.1
     // Time complexity -> Best: O(n log n), Avg: (n log n), Worst: O(n^2) 
     // Space complexity -> O(log n)
     // For more info visit: https://en.wikipedia.org/wiki/Quicksort
     public sealed class QuickSort
     {
+        private const int InsertionSortSize = 16;
+
         // Quick sorts the array in asc order
         public void Sort(int[] array, QuickSortTypes quickSortType)
         {
+            const int start = 0;
+            var length = array.Length - 1;
+
             switch (quickSortType)
             {
                 case QuickSortTypes.SortA:
-                    SortA(array, 0, array.Length - 1); // using the left most element as pivot
+                    SortA(array, start, length); // using the left most element as pivot
                     break;
                 case QuickSortTypes.SortB:
                     SortB(array, 0, array.Length - 1); // using the median of three technique as pivot
@@ -42,43 +42,53 @@ namespace DSAlgorithms
         // in this method we use recursion
         private static void SortA(IList<int> array, int left, int right)
         {
-            var pivot = array[left]; // using left most pivot
-            var i = left;
-            var j = right;
-
-            while (i <= j)
+            while (true)
             {
-                while (array[i] < pivot)
+                var pivot = array[left]; // using left most pivot
+                var i = left;
+                var j = right;
+
+                Partition(array, pivot, ref i, ref j);
+
+                if (left < j)
                 {
-                    i++;
+                    SortA(array, left, j);
                 }
 
-                while (array[j] > pivot)
+                if (i < right)
                 {
-                    j--;
+                    left = i;
+                    continue;
                 }
 
-                if (i > j)
+                break;
+            }
+        }
+
+        // Partitioning
+        private static void Partition(IList<int> array, int pivot, ref int left, ref int right)
+        {
+            while (left <= right)
+            {
+                while (array[left] < pivot)
+                {
+                    left++;
+                }
+
+                while (array[right] > pivot)
+                {
+                    right--;
+                }
+
+                if (left > right)
                 {
                     continue;
                 }
 
-                Swap(array, i, j);
-                i++;
-                j--;
+                Swap(array, left, right);
+                left++;
+                right--;
             }
-
-            if (left < j)
-            {
-                SortA(array, left, j);
-            }
-
-            if (i < right)
-            {
-                left = i;
-                SortA(array, left, right);
-            }
-
         }
 
         // B -> Heuristic added -> using the median of three technique
@@ -87,35 +97,38 @@ namespace DSAlgorithms
         {
             while (true)
             {
-                var pivot = GetMedianPivot(array, left, right);
+                var pivot = GetMedianPivot(array, ref left, ref right);
                 var i = left;
                 var j = right;
 
-                while (i <= j)
+                while (left <= right)
                 {
-                    while (array[i] < pivot)
+                    while (array[left] < pivot)
                     {
-                        i++;
+                        left++;
                     }
 
-                    while (array[j] > pivot)
+                    while (array[right] > pivot)
                     {
-                        j--;
+                        right--;
                     }
 
-                    if (i > j)
+                    if (left > right)
                     {
                         continue;
                     }
 
-                    Swap(array, i, j);
-                    i++;
-                    j--;
+                    var tmp = array[left];
+                    array[left] = array[right];
+                    array[right] = tmp;
+
+                    left++;
+                    right--;
                 }
 
                 if (left < j)
                 {
-                    SortA(array, left, j);
+                    SortB(array, left, j);
                 }
 
                 if (i < right)
@@ -131,43 +144,47 @@ namespace DSAlgorithms
         // B -> Heuristic added -> if array is less than 16 use insertion sort
         private static void SortC(IList<int> array, int left, int right)
         {
-            if (array.Count < 16)
+            var length = right + 1 - left;
+            if (length < InsertionSortSize)
             {
-                InsertionSort(array, array.Count);
+                InsertionSort(array, left, right);
                 return;
             }
 
             while (true)
             {
-                var pivot = GetMedianPivot(array, left, right); // using median as pivot 
+                var pivot = GetMedianPivot(array, ref left, ref right);
                 var i = left;
                 var j = right;
 
-                while (i <= j)
+                while (left <= right)
                 {
-                    while (array[i] < pivot)
+                    while (array[left] < pivot)
                     {
-                        i++;
+                        left++;
                     }
 
-                    while (array[j] > pivot)
+                    while (array[right] > pivot)
                     {
-                        j--;
+                        right--;
                     }
 
-                    if (i > j)
+                    if (left > right)
                     {
                         continue;
                     }
 
-                    Swap(array, i, j);
-                    i++;
-                    j--;
+                    var tmp = array[left];
+                    array[left] = array[right];
+                    array[right] = tmp;
+
+                    left++;
+                    right--;
                 }
 
                 if (left < j)
                 {
-                    SortA(array, left, j);
+                    SortC(array, left, j);
                 }
 
                 if (i < right)
@@ -180,31 +197,28 @@ namespace DSAlgorithms
             }
         }
 
-        // An implementation of insertion sort 
-        private static void InsertionSort(IList<int> array, int n)
+        // an implementation of insertion sort 
+        // code taken from https://rosettacode.org/wiki
+        private static void InsertionSort(IList<int> array, int first, int last)
         {
-            for (var i = 1; i < n; i++)
+            for (var i = first + 1; i <= last; i++)
             {
-                var k = array[i];
-                var j = i - 1;
-
-                while (j >= 0 && array[j] > k)
+                var entry = array[i];
+                var j = i;
+                while (j > first && array[j - 1].CompareTo(entry) > 0)
                 {
-                    array[j + 1] = array[j];
-                    j = j - 1;
+                    array[j] = array[--j];
                 }
 
-                array[j + 1] = k;
+                array[j] = entry;
             }
         }
 
         // Gets median pivot used in the B algorithm
-        private static int GetMedianPivot(IList<int> array, int left, int right)
+        private static int GetMedianPivot(IList<int> array, ref int left, ref int right)
         {
             var middle = (left + right) / 2;
-            var arrayLen = array.Count - 1;
-
-            var tmpArray = new[] { array[0], array[middle], array[arrayLen] }; // TODO: would be nice to remove this
+            var tmpArray = new[] { array[left], array[middle], array[right] };
             Array.Sort(tmpArray);
 
             var pivot = tmpArray[1];
@@ -214,7 +228,7 @@ namespace DSAlgorithms
         // Swap elements
         private static void Swap(IList<int> array, int first, int second)
         {
-            if (first < 0 || second < 0 || first >= array.Count || second >= array.Count)
+            if (first < 0 || second < 0 || first >= array.Count || second >= array.Count || first == second)
             {
                 return;
             }
