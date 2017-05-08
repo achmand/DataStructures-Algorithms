@@ -44,6 +44,7 @@
     <Compile Include="ArrayBasedVector\MiddleArrayBasedVector.cs" />
     <Compile Include="ArrayBasedVector\SfArrayBasedVector.cs" />
     <Compile Include="Interfaces\IListAdt.cs" />
+    <Compile Include="Interfaces\IRopeAdt.cs" />
     <Compile Include="Interfaces\IStackAdt.cs" />
     <Compile Include="Interfaces\IVectorAdt.cs" />
     <Compile Include="Interfaces\IQueueAdt.cs" />
@@ -57,6 +58,9 @@
     <Compile Include="Stacks\StackArrayBasedVector.cs" />
     <Compile Include="Stacks\StackLinkedListBased.cs" />
     <Compile Include="Stacks\StackQueues.cs" />
+    <Compile Include="Trees\BinaryNode.cs" />
+    <Compile Include="Trees\RopeNode.cs" />
+    <Compile Include="Trees\RopeTree.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
